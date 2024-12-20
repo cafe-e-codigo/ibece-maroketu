@@ -6,7 +6,7 @@ describe('[Unit]: Validação de nome', (): void => {
 		expect(name.value).toEqual('John Doe');
 	});
 	
-	test('Não deve construir un mome com ums string vazia', (): void => {
+	test('Não deve construir um mome com uma string vazia', (): void => {
 		expect((): Name => new Name('')).toThrow(new Error('Invalid name.'));
 	});
 });
