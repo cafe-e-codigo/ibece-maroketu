@@ -1,8 +1,8 @@
-import { SonSaintRepository } from '../../Application/Repositories/SonSaintRepository'
-import { SonSaint } from '../../Domain/Entities/SonSaint'
+import { UserRepository } from '../../Application/Repositories/UserRepository'
+import { User } from '../../Domain/Entities/User'
 
-export class InMemorySonSaintRepository implements SonSaintRepository {
-    protected sonsSaint: {
+export class InMemoryUserRepository implements UserRepository {
+    protected user: {
         id: string
         religiousInstitutionId: string
         name: string
@@ -19,14 +19,15 @@ export class InMemorySonSaintRepository implements SonSaintRepository {
         state: string
         city: string
         country: string
+        type: string
     }[]
 
     constructor() {
-        this.sonsSaint = []
+        this.user = []
     }
 
-    async save(sonSaint: SonSaint): Promise<void> {
-        this.sonsSaint.push({
+    async save(sonSaint: User): Promise<void> {
+        this.user.push({
             id: sonSaint.id,
             religiousInstitutionId: sonSaint.religiousInstitutionId,
             name: sonSaint.name,
@@ -43,10 +44,11 @@ export class InMemorySonSaintRepository implements SonSaintRepository {
             state: sonSaint.state,
             city: sonSaint.city,
             country: sonSaint.country,
+            type: sonSaint.type,
         })
     }
 
-    async update(sonSaint: SonSaint): Promise<SonSaint> {
+    async update(sonSaint: User): Promise<User> {
         throw new Error('Method not implemented.')
     }
 
@@ -54,34 +56,15 @@ export class InMemorySonSaintRepository implements SonSaintRepository {
         throw new Error('Method not implemented.')
     }
 
-    async findById(id: string): Promise<SonSaint> {
+    async findById(id: string): Promise<User> {
         throw new Error('Method not implemented.')
     }
 
-    async findAll(): Promise<SonSaint[]> {
-        const sonsSaints: SonSaint[] = []
-        for (const sonSaint of this.sonsSaint) {
-            sonsSaints.push(
-                SonSaint.restore(
-                    sonSaint.id,
-                    sonSaint.religiousInstitutionId,
-                    sonSaint.name,
-                    sonSaint.email,
-                    sonSaint.cpf,
-                    sonSaint.bio,
-                    sonSaint.firstSaint,
-                    sonSaint.secondSaint,
-                    sonSaint.othersSpirits,
-                    sonSaint.obligations,
-                    sonSaint.initiationDate,
-                    sonSaint.address,
-                    sonSaint.zipCode,
-                    sonSaint.state,
-                    sonSaint.city,
-                    sonSaint.country,
-                ),
-            )
+    async findAll(): Promise<User[]> {
+        const users: User[] = []
+        for (const sonSaint of this.user) {
+            users.push(User.restore(sonSaint.id, sonSaint.religiousInstitutionId, sonSaint.name, sonSaint.email, sonSaint.cpf, sonSaint.bio, sonSaint.firstSaint, sonSaint.secondSaint, sonSaint.othersSpirits, sonSaint.obligations, sonSaint.initiationDate, sonSaint.address, sonSaint.zipCode, sonSaint.state, sonSaint.city, sonSaint.country, sonSaint.type))
         }
-        return sonsSaints
+        return users
     }
 }

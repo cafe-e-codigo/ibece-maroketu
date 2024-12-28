@@ -1,4 +1,4 @@
-export class CreateSonSaintCommand {
+export class CreateUserCommand {
     public religiousInstitutionId: string
     public name: string
     public email: string
@@ -14,6 +14,7 @@ export class CreateSonSaintCommand {
     public state: string
     public city: string
     public country: string
+    public type: string
 
     constructor({
         religiousInstitutionId,
@@ -31,6 +32,7 @@ export class CreateSonSaintCommand {
         state,
         city,
         country,
+        type,
     }: {
         religiousInstitutionId: string
         name: string
@@ -47,6 +49,7 @@ export class CreateSonSaintCommand {
         state: string
         city: string
         country: string
+        type: string
     }) {
         this.religiousInstitutionId = religiousInstitutionId
         this.name = name
@@ -63,5 +66,6 @@ export class CreateSonSaintCommand {
         this.state = state
         this.city = city
         this.country = country
+        this.type = type
     }
 }

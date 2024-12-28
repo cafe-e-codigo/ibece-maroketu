@@ -4,7 +4,7 @@ import { Name } from '../ValueObjects/Name'
 import { Email } from '../ValueObjects/Email'
 import { Uuid } from '../ValueObjects/Uuid'
 
-export class SonSaint {
+export class User {
     private constructor(
         private readonly _id: Uuid,
         private readonly _religiousInstitutionId: Uuid,
@@ -26,6 +26,7 @@ export class SonSaint {
         private readonly _state: string,
         private readonly _city: string,
         private readonly _country: string,
+        private readonly _type: string,
     ) {}
 
     static create(
@@ -44,9 +45,10 @@ export class SonSaint {
         state: string,
         city: string,
         country: string,
-    ): SonSaint {
+        type: string,
+    ): User {
         const id: string = crypto.randomUUID()
-        return new SonSaint(new Uuid(id), new Uuid(religiousInstitutionId), new Name(name), new Email(email), new Cpf(cpf), bio, firstSaint, secondSaint, othersSpirits, obligations, initiationDate, address, zipCode, state, city, country)
+        return new User(new Uuid(id), new Uuid(religiousInstitutionId), new Name(name), new Email(email), new Cpf(cpf), bio, firstSaint, secondSaint, othersSpirits, obligations, initiationDate, address, zipCode, state, city, country, type)
     }
 
     static restore(
@@ -66,8 +68,9 @@ export class SonSaint {
         state: string,
         city: string,
         country: string,
-    ): SonSaint {
-        return new SonSaint(new Uuid(id), new Uuid(religiousInstitutionId), new Name(name), new Email(email), new Cpf(cpf), bio, firstSaint, secondSaint, othersSpirits, obligations, initiationDate, address, zipCode, state, city, country)
+        type: string,
+    ): User {
+        return new User(new Uuid(id), new Uuid(religiousInstitutionId), new Name(name), new Email(email), new Cpf(cpf), bio, firstSaint, secondSaint, othersSpirits, obligations, initiationDate, address, zipCode, state, city, country, type)
     }
 
     get id(): string {
@@ -132,5 +135,9 @@ export class SonSaint {
 
     get country(): string {
         return this._country
+    }
+
+    get type(): string {
+        return this._type
     }
 }

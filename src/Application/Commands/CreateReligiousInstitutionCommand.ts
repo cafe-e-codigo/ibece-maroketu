@@ -9,27 +9,7 @@ export class CreateReligiousInstitutionCommand {
     readonly cnpj: string
     readonly history: string
 
-    constructor({
-        name,
-        email,
-        address,
-        city,
-        country,
-        neighborhood,
-        zipCode,
-        cnpj,
-        history,
-    }: {
-        name: string
-        email: string
-        address: string
-        city: string
-        country: string
-        neighborhood: string
-        zipCode: string
-        cnpj: string
-        history: string
-    }) {
+    constructor({ name, email, address, city, country, neighborhood, zipCode, cnpj, history }: { name: string; email: string; address: string; city: string; country: string; neighborhood: string; zipCode: string; cnpj: string; history: string }) {
         this.name = name
         this.email = email
         this.address = address
