@@ -1,5 +1,4 @@
 import ReligiousInstitution from "../../src/Domain/Entities/ReligiousInstitution";
-import {fakerPT_BR as faker} from "@faker-js/faker";
 
 describe('[Unit]: Construção e restauração de uma instituição religiosa', (): void => {
 	test('Deve construir uma instituição religiosa', async (): Promise<void> => {

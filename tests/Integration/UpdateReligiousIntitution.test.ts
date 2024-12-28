@@ -1,5 +1,5 @@
 import ReligiousInstitution from "../../src/Domain/Entities/ReligiousInstitution";
-import {fakerPT_BR as faker, fakerSK} from "@faker-js/faker";
+import {fakerPT_BR as faker} from "@faker-js/faker";
 import {
 	InMemoryReligiousInstitutionRepository
 } from "../../src/Infra/Repositories/InMemoryReligiousInstitutionRepository";
