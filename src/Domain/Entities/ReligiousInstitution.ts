@@ -16,15 +16,24 @@ export default class ReligiousInstitution {
         private readonly _zipCode: string,
         private readonly _cnpj: Cnpj,
         private readonly _history: string,
+        private readonly _createdAt: Date,
+        private readonly _updatedAt?: Date | null | undefined,
+        private readonly _deletedAt?: Date | null | undefined,
     ) {}
 
-    static create(name: string, email: string, address: string, city: string, country: string, neighborhood: string, zipCode: string, cnpj: string, history: string): ReligiousInstitution {
+    static create(name: string, email: string, address: string, city: string, country: string, neighborhood: string, zipCode: string, cnpj: string, history: string, updatedAt?: string | null, deletedAt?: string | null): ReligiousInstitution {
         const id: string = crypto.randomUUID()
-        return new ReligiousInstitution(new Uuid(id), new Name(name), new Email(email), address, city, country, neighborhood, zipCode, new Cnpj(cnpj), history)
+        const createAt: Date = new Date()
+        const updateAt: Date | null = updatedAt ? new Date(updatedAt) : null
+        const deleteAt: Date | null = deletedAt ? new Date(deletedAt) : null
+        return new ReligiousInstitution(new Uuid(id), new Name(name), new Email(email), address, city, country, neighborhood, zipCode, new Cnpj(cnpj), history, createAt, updateAt, deleteAt)
     }
 
-    static restore(id: string, name: string, email: string, address: string, city: string, country: string, neighborhood: string, zipCode: string, cnpj: string, history: string): ReligiousInstitution {
-        return new ReligiousInstitution(new Uuid(id), new Name(name), new Email(email), address, city, country, neighborhood, zipCode, new Cnpj(cnpj), history)
+    static restore(id: string, name: string, email: string, address: string, city: string, country: string, neighborhood: string, zipCode: string, cnpj: string, history: string, createdAt: string, updatedAt?: string | null, deletedAt?: string | null): ReligiousInstitution {
+        const createAt: Date = new Date(createdAt)
+        const updateAt: Date | null = updatedAt ? new Date(updatedAt) : null
+        const deleteAt: Date | null = deletedAt ? new Date(deletedAt) : null
+        return new ReligiousInstitution(new Uuid(id), new Name(name), new Email(email), address, city, country, neighborhood, zipCode, new Cnpj(cnpj), history, createAt, updateAt, deleteAt)
     }
 
     get id(): string {
@@ -65,5 +74,17 @@ export default class ReligiousInstitution {
 
     get history(): string {
         return this._history
+    }
+
+    get createdAt(): Date {
+        return this._createdAt
+    }
+
+    get updatedAt(): Date | null | undefined {
+        return this._updatedAt
+    }
+
+    get deletedAt(): Date | null | undefined {
+        return this._deletedAt
     }
 }
